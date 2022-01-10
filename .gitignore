@@ -3,3 +3,5 @@
 ################################################################################
 
 /IdentityByExamples/IdentityByExamples/bin/Debug/netcoreapp3.1
+/IdentityByExamples/IdentityByExamples/obj
+/IdentityByExamples/.vs/IdentityByExamples
