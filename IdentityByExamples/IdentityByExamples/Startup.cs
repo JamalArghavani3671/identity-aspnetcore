@@ -1,3 +1,4 @@
+using IdentityByExamples.Factory;
 using IdentityByExamples.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +41,7 @@ namespace IdentityByExamples
                 opt.Password.RequiredLength = 7;
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
 
                 opt.User.RequireUniqueEmail = true;
             })
@@ -48,6 +50,8 @@ namespace IdentityByExamples
             services.AddControllersWithViews();
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +72,7 @@ namespace IdentityByExamples
 
             app.UseRouting();
 
+            app.UseAuthentication();    
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

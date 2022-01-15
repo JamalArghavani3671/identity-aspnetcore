@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IdentityByExamples.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using IdentityByExamples.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace IdentityByExamples.Controllers
 {
@@ -24,6 +21,7 @@ namespace IdentityByExamples.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> Employees()
         {
             var employees = await _context.Employees.ToListAsync();

@@ -1,0 +1,20 @@
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\bin\Debug\netcoreapp3.1\EmailService.deps.json
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\bin\Debug\netcoreapp3.1\EmailService.dll
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\bin\Debug\netcoreapp3.1\EmailService.pdb
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.GeneratedMSBuildEditorConfig.editorconfig
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfoInputs.cache
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfo.cs
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.CoreCompileInputs.cache
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.dll
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.pdb
+D:\Arghavani\03- Repositories\01- Git\04- EmailApp\EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.AssemblyReference.cache
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\bin\Debug\netcoreapp3.1\EmailService.deps.json
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\bin\Debug\netcoreapp3.1\EmailService.dll
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\bin\Debug\netcoreapp3.1\EmailService.pdb
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.AssemblyReference.cache
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.GeneratedMSBuildEditorConfig.editorconfig
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfoInputs.cache
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.AssemblyInfo.cs
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.csproj.CoreCompileInputs.cache
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.dll
+D:\Arghavani\03- Repositories\01- Git\04- Examples\Example\01- EmailApp\EmailService\obj\Debug\netcoreapp3.1\EmailService.pdb
