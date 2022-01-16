@@ -1,3 +1,4 @@
+using EmailService;
 using IdentityByExamples.Factory;
 using IdentityByExamples.Models;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace IdentityByExamples
 {
@@ -25,33 +27,33 @@ namespace IdentityByExamples
             services.AddDbContext<ApplicationContext>(opts =>
                 opts.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
 
-            //services.AddIdentity<User, IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationContext>();
-
-            //services.AddIdentity<User, IdentityRole>(opt =>
-            //{
-            //    opt.Password.RequiredLength = 7;
-            //    opt.Password.RequireDigit = false;
-            //    opt.Password.RequireUppercase = false;
-            //})
-            //    .AddEntityFrameworkStores<ApplicationContext>();
-
             services.AddIdentity<User, IdentityRole>(opt =>
             {
-                opt.Password.RequiredLength = 7;
+                opt.Password.RequiredLength = 3;
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireUppercase = false;
+                opt.Password.RequireLowercase = false;
                 opt.Password.RequireNonAlphanumeric = false;
 
                 opt.User.RequireUniqueEmail = true;
             })
-            .AddEntityFrameworkStores<ApplicationContext>();
+            .AddEntityFrameworkStores<ApplicationContext>()
+            .AddDefaultTokenProviders();
+            services.Configure<DataProtectionTokenProviderOptions>(
+                opt => opt.TokenLifespan = TimeSpan.FromHours(2));
 
             services.AddControllersWithViews();
 
             services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
+
+            var emailConfig = Configuration
+                .GetSection("EmailConfiguration")
+                .Get<EmailConfiguration>();
+
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,7 +74,7 @@ namespace IdentityByExamples
 
             app.UseRouting();
 
-            app.UseAuthentication();    
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
