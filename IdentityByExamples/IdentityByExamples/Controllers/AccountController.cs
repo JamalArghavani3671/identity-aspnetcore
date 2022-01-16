@@ -52,9 +52,37 @@ namespace IdentityByExamples.Controllers
                 return View(userModel);
             }
 
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email }, Request.Scheme);
+            var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink);
+            _emailSender.SendEmail(message);
+
             await _userManager.AddToRoleAsync(user, "Visitor");
 
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(SuccessRegistration));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string token, string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                return View("Error");
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            return View(result.Succeeded ? nameof(ConfirmEmail) : "Error");
+        }
+
+        [HttpGet]
+        public IActionResult Error()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult SuccessRegistration()
+        {
+            return View();
         }
 
         [HttpGet]
@@ -92,14 +120,24 @@ namespace IdentityByExamples.Controllers
             //    return View();
             //}
 
-            var result = await _signInManager.PasswordSignInAsync(userModel.Email, userModel.Password, userModel.RememberMe, false);
+            var result = await _signInManager.PasswordSignInAsync(userModel.Email, userModel.Password, userModel.RememberMe, lockoutOnFailure:true);
             if (result.Succeeded)
             {
                 return RedirectToLocal(returnUrl);
             }
+
+            if (result.IsLockedOut)
+            {
+                var forgotPassLink = Url.Action(nameof(ForgotPassword), "Account", new { }, Request.Scheme);
+                var content = string.Format("Your account is locked out, to reset your password, please click this link: {0}", forgotPassLink);
+                var message = new Message(new string[] { userModel.Email }, "Locked out account information", content);
+                _emailSender.SendEmail(message);
+                ModelState.AddModelError("", "The account is locked out");
+                return View();
+            }
             else
             {
-                ModelState.AddModelError("", "Invalid UserName or Password");
+                ModelState.AddModelError("", "Invalid Login Attempt");
                 return View();
             }
         }
